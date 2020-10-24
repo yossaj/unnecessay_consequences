@@ -1,9 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/src/text_liquid_fill.dart';
+import 'dart:async';
 
-class WelcomeScreen extends StatelessWidget {
+
+class WelcomeScreen extends StatefulWidget {
+
+
+  @override
+  _WelcomeScreenState createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+
+  @override
+  void initState() {
+    Timer(Duration(seconds: 4), () {
+      Navigator.pushNamed(context, '2');
+    });
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Container(
         color: Colors.red,
@@ -11,6 +31,7 @@ class WelcomeScreen extends StatelessWidget {
           child: SizedBox(
             width: double.infinity,
             child: TextLiquidFill(
+              loadDuration: Duration(seconds: 3),
               textAlign: TextAlign.center,
               text: 'Unnecessary Consequences',
               waveColor: Colors.white,
