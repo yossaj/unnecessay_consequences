@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:twitter_api/twitter_api.dart';
+import 'package:unnecessary_consequences/keys.dart';
 
 class RegistrationScreen extends StatefulWidget {
 
@@ -12,10 +13,10 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
 
   final _twitterOauth = new twitterApi(
-      consumerKey: '',
-      consumerSecret: '',
-      token: '',
-      tokenSecret: ''
+      consumerKey: consumerKey,
+      consumerSecret: consumerSecret,
+      token: token,
+      tokenSecret: tokenSecret
   );
 
   void triggerRequest() async{
@@ -53,14 +54,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          RegTextField(),
-          RegTextField(),
-          RegTextField(),
-          FlatButton(
-            child: Text('Next'),
-            onPressed: (){
-              Navigator.pushNamed(context, '3');
-            },
+          RegTextField(inputTitle: 'Your Twitter handle',),
+          RegTextField(inputTitle: 'Your boss\'s or loved one\'s Twitter handle'),
+          RegTextField(inputTitle: 'Another input',),
+          Container(
+            padding:  EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+            child: FlatButton(
+              child: Text('Next'),
+              onPressed: (){
+                Navigator.pushNamed(context, '3');
+              },
+            ),
+            decoration: BoxDecoration(
+              color: Color(0x44F16C6C),
+              borderRadius: BorderRadius.circular(5),
+
+            ),
           )
         ],
       ),
@@ -69,28 +78,41 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 }
 
 class RegTextField extends StatefulWidget {
+
+
+  RegTextField({this.inputTitle});
+
+  String inputTitle;
+
   @override
   _RegTextFieldState createState() => _RegTextFieldState();
 }
+
 
 class _RegTextFieldState extends State<RegTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-      child: Container(
-        padding: EdgeInsets.only(bottom: 20, left: 8, right: 8),
-        child: TextField(
-          style: TextStyle(
-            fontSize: 20
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(widget.inputTitle),
+          Container(
+            padding: EdgeInsets.only(bottom: 20, left: 8, right: 8),
+            child: TextField(
+              style: TextStyle(
+                fontSize: 20
+              ),
+            ),
+            decoration: BoxDecoration(
+              color: Color(0x44F16C6C),
+              borderRadius: BorderRadius.circular(5),
+
+            ),
+
           ),
-        ),
-        decoration: BoxDecoration(
-          color: Color(0x44F16C6C),
-          borderRadius: BorderRadius.circular(5),
-
-        ),
-
+        ],
       ),
     );
   }

@@ -32,7 +32,12 @@ class _TimeScreenState extends State<TimeScreen> {
           timer.cancel();
         }
       });
+  }
 
+  void resetCountdownAndText(){
+    backgroundColor = Colors.green;
+    countDown = Duration(seconds: 0);
+    countDownText = _formatDuration(countDown);
   }
 
   String _formatDuration(Duration duration) {
@@ -42,30 +47,44 @@ class _TimeScreenState extends State<TimeScreen> {
     return "${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds";
   }
 
+  Color backgroundColor = Colors.red;
+  Color shadowColor = Colors.red.shade100;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Container(
-          height: 300,
-          width: 300,
-          decoration: BoxDecoration(
-            color: Colors.red,
-            borderRadius: BorderRadius.circular(150),
-            boxShadow: [BoxShadow(
-                color: Colors.red.shade100,
-                spreadRadius: 8,
-                blurRadius: 4,
-            )]
-          ),
-          child: Center(
-            child: Text(
-              countDownText,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 58
-            ),),
+        child: FlatButton(
+          shape: CircleBorder(),
+          onPressed: (){
+            setState(() {
+              shadowColor = Colors.green.shade100;
+              backgroundColor = Colors.green;
+              resetCountdownAndText();
+            });
+
+          },
+          child: Container(
+            height: 300,
+            width: 300,
+            decoration: BoxDecoration(
+              color: backgroundColor,
+              borderRadius: BorderRadius.circular(150),
+              boxShadow: [BoxShadow(
+                  color: shadowColor,
+                  spreadRadius: 8,
+                  blurRadius: 4,
+              )]
+            ),
+            child: Center(
+              child: Text(
+                countDownText,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 58
+              ),),
+            ),
           ),
         ),
       ),

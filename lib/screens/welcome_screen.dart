@@ -17,7 +17,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     Timer(Duration(seconds: 4), () {
       Navigator.pushNamed(context, '2');
     });
-    // TODO: implement initState
     super.initState();
   }
 
