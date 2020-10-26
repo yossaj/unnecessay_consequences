@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:twitter_api/twitter_api.dart';
-import 'package:unnecessary_consequences/keys.dart';
-
+import 'components/registration_textfield.dart';
 class RegistrationScreen extends StatefulWidget {
 
 
@@ -12,38 +10,9 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
 
-  final _twitterOauth = new twitterApi(
-      consumerKey: consumerKey,
-      consumerSecret: consumerSecret,
-      token: token,
-      tokenSecret: tokenSecret
-  );
-
-  void triggerRequest() async{
-    Future twitterRequest = _twitterOauth.getTwitterRequest(
-    // Http Method
-    "POST",
-    // Endpoint you are trying to reach
-    "statuses/update.json",
-    // The options for the request
-    options: {
-    "status": "Testing for an app"// Used to prevent truncating tweets
-    },
-    );
-
-
-// Wait for the future to finish
-    var res = await twitterRequest;
-
-// Print off the response
-    print(res.statusCode);
-    print(res.body);
-  }
-
 
   @override
   void initState() {
-    triggerRequest();
     super.initState();
   }
 
@@ -77,44 +46,4 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 }
 
-class RegTextField extends StatefulWidget {
-
-
-  RegTextField({this.inputTitle});
-
-  String inputTitle;
-
-  @override
-  _RegTextFieldState createState() => _RegTextFieldState();
-}
-
-
-class _RegTextFieldState extends State<RegTextField> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(widget.inputTitle),
-          Container(
-            padding: EdgeInsets.only(bottom: 20, left: 8, right: 8),
-            child: TextField(
-              style: TextStyle(
-                fontSize: 20
-              ),
-            ),
-            decoration: BoxDecoration(
-              color: Color(0x44F16C6C),
-              borderRadius: BorderRadius.circular(5),
-
-            ),
-
-          ),
-        ],
-      ),
-    );
-  }
-}
 

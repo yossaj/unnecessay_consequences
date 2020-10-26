@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:unnecessary_consequences/helpers/time_formatter.dart';
+import 'package:unnecessary_consequences/models/twitter_requests.dart';
 
 class TimeScreen extends StatefulWidget {
 
@@ -12,6 +14,7 @@ class _TimeScreenState extends State<TimeScreen> {
 
   Duration countDown;
   String countDownText = '00:00:00';
+  Timer timer;
 
   @override
   void initState() {
@@ -20,31 +23,27 @@ class _TimeScreenState extends State<TimeScreen> {
   }
 
   void setCountdown(){
-    countDown = Duration(seconds: 40);
-
-      var timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    countDown = Duration(seconds: 10);
+      timer = Timer.periodic(Duration(seconds: 1), (timer) {
         if(countDown.inSeconds > 0) {
           countDown -= Duration(seconds: 1);
           setState(() {
-            countDownText = _formatDuration(countDown);
+            countDownText = formatDuration(countDown);
           });
-        }else{
+        }else if(countDown.inSeconds == 0){
           timer.cancel();
+          triggerRequest();
         }
       });
   }
 
-  void resetCountdownAndText(){
+  void resetCountdownStateOnClick(){
     backgroundColor = Colors.green;
     countDown = Duration(seconds: 0);
-    countDownText = _formatDuration(countDown);
-  }
-
-  String _formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, "0");
-    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
-    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
-    return "${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds";
+    countDownText = formatDuration(countDown);
+    shadowColor = Colors.green.shade100;
+    backgroundColor = Colors.green;
+    timer.cancel();
   }
 
   Color backgroundColor = Colors.red;
@@ -59,9 +58,7 @@ class _TimeScreenState extends State<TimeScreen> {
           shape: CircleBorder(),
           onPressed: (){
             setState(() {
-              shadowColor = Colors.green.shade100;
-              backgroundColor = Colors.green;
-              resetCountdownAndText();
+              resetCountdownStateOnClick();
             });
 
           },
