@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:unnecessary_consequences/screens/time_screen.dart';
 import 'components/registration_textfield.dart';
 class RegistrationScreen extends StatefulWidget {
+
+  static const routeName = '/registration';
 
 
   @override
@@ -10,6 +13,8 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
 
+  String userTwitterHandle;
+  String bossTwitterHandle;
 
   @override
   void initState() {
@@ -23,21 +28,26 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          RegTextField(inputTitle: 'Your Twitter handle',),
-          RegTextField(inputTitle: 'Your boss\'s or loved one\'s Twitter handle'),
-          RegTextField(inputTitle: 'Another input',),
+          RegTextField(
+            inputTitle: 'Your Twitter handle',
+            onChanged: (String text){userTwitterHandle = text;},
+          ),
+          RegTextField(
+            inputTitle: 'Your boss\'s or loved one\'s Twitter handle',
+            onChanged: (String text){ bossTwitterHandle = text;},
+          ),
           Container(
             padding:  EdgeInsets.symmetric(vertical: 12, horizontal: 20),
             child: FlatButton(
               child: Text('Next'),
               onPressed: (){
-                Navigator.pushNamed(context, '3');
+                print("$userTwitterHandle & $bossTwitterHandle ");
+                Navigator.pushNamed(context, TimeScreen.routeName, arguments: [userTwitterHandle, bossTwitterHandle]);
               },
             ),
             decoration: BoxDecoration(
               color: Color(0x44F16C6C),
               borderRadius: BorderRadius.circular(5),
-
             ),
           )
         ],

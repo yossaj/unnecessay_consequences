@@ -12,11 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '1',
+      initialRoute: WelcomeScreen.routeName,
       routes: {
-        '1' : (context) => WelcomeScreen(),
-        '2' :(context) => RegistrationScreen(),
-        '3' : (context) => TimeScreen()
+        WelcomeScreen.routeName: (context) => WelcomeScreen(),
+        RegistrationScreen.routeName :(context) => RegistrationScreen(),
+        TimeScreen.routeName : (context) => TimeScreen()
       },
       title: 'Flutter Demo',
       theme: ThemeData(

@@ -5,9 +5,10 @@ class RegTextField extends StatefulWidget {
   @override
   _RegTextFieldState createState() => _RegTextFieldState();
 
-  RegTextField({this.inputTitle});
+  RegTextField({this.inputTitle, this.onChanged});
 
   final String inputTitle;
+  final Function onChanged;
 }
 
 
@@ -23,6 +24,7 @@ class _RegTextFieldState extends State<RegTextField> {
           Container(
             padding: EdgeInsets.only(bottom: 20, left: 8, right: 8),
             child: TextField(
+              onChanged: widget.onChanged,
               style: TextStyle(
                   fontSize: 20
               ),

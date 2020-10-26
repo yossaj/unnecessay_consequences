@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/src/text_liquid_fill.dart';
 import 'dart:async';
 
+import 'package:unnecessary_consequences/screens/registration_screen.dart';
+
 
 class WelcomeScreen extends StatefulWidget {
 
+  static const routeName = '/';
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
@@ -15,7 +18,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
     Timer(Duration(seconds: 4), () {
-      Navigator.pushNamed(context, '2');
+      Navigator.pushNamed(context, RegistrationScreen.routeName);
     });
     super.initState();
   }

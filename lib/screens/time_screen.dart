@@ -5,6 +5,9 @@ import 'package:unnecessary_consequences/models/twitter_requests.dart';
 
 class TimeScreen extends StatefulWidget {
 
+  static const routeName = '/timer';
+
+
 
   @override
   _TimeScreenState createState() => _TimeScreenState();
@@ -15,12 +18,16 @@ class _TimeScreenState extends State<TimeScreen> {
   Duration countDown;
   String countDownText = '00:00:00';
   Timer timer;
+  List<String> args;
+
 
   @override
   void initState() {
     super.initState();
     setCountdown();
   }
+
+
 
   void setCountdown(){
     countDown = Duration(seconds: 10);
@@ -51,6 +58,10 @@ class _TimeScreenState extends State<TimeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    args = ModalRoute.of(context).settings.arguments;
+
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -59,6 +70,7 @@ class _TimeScreenState extends State<TimeScreen> {
           onPressed: (){
             setState(() {
               resetCountdownStateOnClick();
+              print(args);
             });
 
           },
