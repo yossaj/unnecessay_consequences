@@ -24,7 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
   animated_text_kit: ^2.4.1
-  intl: ^0.16.1
+  http: ^0.12.2
+  twitter_api: ^0.1.2
 
 
   # The following adds the Cupertino Icons font to your application.
