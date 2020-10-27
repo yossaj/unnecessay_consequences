@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/src/text_liquid_fill.dart';
 import 'dart:async';
-
 import 'package:unnecessary_consequences/screens/registration_screen.dart';
 
 

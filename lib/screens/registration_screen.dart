@@ -16,6 +16,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String userTwitterHandle;
   String bossTwitterHandle;
 
+  bool validHandles(){
+    return userTwitterHandle.isNotEmpty && bossTwitterHandle.isNotEmpty;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -41,8 +45,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             child: FlatButton(
               child: Text('Next'),
               onPressed: (){
-                print("$userTwitterHandle & $bossTwitterHandle ");
-                Navigator.pushNamed(context, TimeScreen.routeName, arguments: [userTwitterHandle, bossTwitterHandle]);
+                if(validHandles()){
+                  Navigator.pushNamed(context, TimeScreen.routeName, arguments: [userTwitterHandle, bossTwitterHandle]);
+                }
               },
             ),
             decoration: BoxDecoration(

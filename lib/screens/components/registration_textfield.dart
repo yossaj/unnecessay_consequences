@@ -11,7 +11,6 @@ class RegTextField extends StatefulWidget {
   final Function onChanged;
 }
 
-
 class _RegTextFieldState extends State<RegTextField> {
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class _RegTextFieldState extends State<RegTextField> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(widget.inputTitle),
+          Text(widget.inputTitle, style: TextStyle(color: Colors.grey.shade800),),
           Container(
             padding: EdgeInsets.only(bottom: 20, left: 8, right: 8),
             child: TextField(
