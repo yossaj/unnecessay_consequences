@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:unnecessary_consequences/screens/components/screen_arguments.dart';
 import 'package:unnecessary_consequences/screens/time_screen.dart';
 import 'components/registration_textfield.dart';
 class RegistrationScreen extends StatefulWidget {
 
   static const routeName = '/registration';
+
 
 
   @override
@@ -46,7 +48,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               child: Text('Next'),
               onPressed: (){
                 if(validHandles()){
-                  Navigator.pushNamed(context, TimeScreen.routeName, arguments: [userTwitterHandle, bossTwitterHandle]);
+                  Navigator.pushNamed(context,
+                      TimeScreen.routeName,
+                      arguments: ScreenArguments(
+                          userTwitterHandle,
+                          bossTwitterHandle));
                 }
               },
             ),

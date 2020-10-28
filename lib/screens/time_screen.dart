@@ -2,8 +2,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:unnecessary_consequences/helpers/time_formatter.dart';
 import 'package:unnecessary_consequences/models/twitter_requests.dart';
+import 'package:unnecessary_consequences/helpers/tweet_selector.dart';
+import 'components/screen_arguments.dart';
 
 class TimeScreen extends StatefulWidget {
+
+  TimeScreen(this.arguments);
+
+  final ScreenArguments arguments;
+
 
   static const routeName = '/timer';
 
@@ -18,11 +25,15 @@ class _TimeScreenState extends State<TimeScreen> {
   Timer timer;
   List<String> args;
   bool warningVisibility = false;
+  String tweet;
+  String bossHandle;
 
   @override
   void initState() {
     super.initState();
     setCountdown();
+    bossHandle = this.widget.arguments.bossHandle;
+    tweet = bossHandle + " " + getRandomTweet();
   }
 
   void setCountdown(){
@@ -36,7 +47,7 @@ class _TimeScreenState extends State<TimeScreen> {
           if(countDown.inSeconds <= 5)  warningVisibility = true;
         }else if(countDown.inSeconds == 0){
           timer.cancel();
-          triggerRequest();
+          triggerRequest(tweet: tweet);
         }
       });
   }
@@ -56,8 +67,6 @@ class _TimeScreenState extends State<TimeScreen> {
   @override
   Widget build(BuildContext context) {
 
-    args = ModalRoute.of(context).settings.arguments;
-
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -71,7 +80,6 @@ class _TimeScreenState extends State<TimeScreen> {
                 setState(() {
                   warningVisibility = false;
                   resetCountdownStateOnClick();
-                  print(args);
                 });
 
               },
@@ -111,8 +119,8 @@ class _TimeScreenState extends State<TimeScreen> {
                   children: [
                     Text("Press the button now!", style: TextStyle(fontSize: 20, ),),
                     Text('We will tweet', style: TextStyle(fontWeight: FontWeight.w100),),
-                    Text("'Stick your hob up your ass!'"),
-                    Text('@yourbosstwitter', style: TextStyle(fontWeight: FontWeight.w100),)
+                    Text(tweet),
+                    Text(bossHandle, style: TextStyle(fontWeight: FontWeight.w100),)
                   ],
                 ),
                 decoration: BoxDecoration(

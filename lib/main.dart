@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       routes: {
         WelcomeScreen.routeName: (context) => WelcomeScreen(),
         RegistrationScreen.routeName :(context) => RegistrationScreen(),
-        TimeScreen.routeName : (context) => TimeScreen()
+        TimeScreen.routeName : (context) => TimeScreen(ModalRoute.of(context).settings.arguments)
       },
       title: 'Flutter Demo',
       theme: ThemeData(

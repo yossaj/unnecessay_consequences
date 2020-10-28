@@ -1,8 +1,6 @@
 import 'package:twitter_api/twitter_api.dart';
 import 'package:unnecessary_consequences/keys.dart';
 
-String tweet = "Testing for an app for the second time.";
-
 final _twitterOauth = new twitterApi(
     consumerKey: consumerKey,
     consumerSecret: consumerSecret,
@@ -10,7 +8,7 @@ final _twitterOauth = new twitterApi(
     tokenSecret: tokenSecret
 );
 
-void triggerRequest() async{
+void triggerRequest({tweet : String}) async{
   Future twitterRequest = _twitterOauth.getTwitterRequest(
     // Http Method
     "POST",
@@ -26,4 +24,6 @@ void triggerRequest() async{
   print(res.statusCode);
   print(res.body);
 }
+
+
 
