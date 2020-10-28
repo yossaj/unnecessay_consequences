@@ -32,7 +32,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           RegTextField(
             inputTitle: 'Your Twitter handle',
@@ -41,6 +41,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           RegTextField(
             inputTitle: 'Your boss\'s or loved one\'s Twitter handle',
             onChanged: (String text){ bossTwitterHandle = text;},
+          ),
+          SizedBox(
+            height: 200,
           ),
           Container(
             padding:  EdgeInsets.symmetric(vertical: 12, horizontal: 20),
@@ -60,6 +63,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               color: Color(0x44F16C6C),
               borderRadius: BorderRadius.circular(5),
             ),
+          ),
+          SizedBox(
+            height: 100,
           )
         ],
       ),
