@@ -4,6 +4,7 @@ import 'package:unnecessary_consequences/helpers/time_formatter.dart';
 import 'package:unnecessary_consequences/models/twitter_requests.dart';
 import 'package:unnecessary_consequences/helpers/tweet_selector.dart';
 import 'components/screen_arguments.dart';
+import 'dart:math';
 
 class TimeScreen extends StatefulWidget {
 
@@ -48,8 +49,22 @@ class _TimeScreenState extends State<TimeScreen> {
         }else if(countDown.inSeconds == 0){
           timer.cancel();
           triggerRequest(tweet: tweet);
+          coolDownTimer();
         }
       });
+  }
+
+  void coolDownTimer(){
+    Timer coolDownTimer;
+    Duration coolDownDur = Duration(minutes: Random().nextInt(60));
+     coolDownTimer = Timer.periodic(Duration(minutes: 1), (timer) {
+       coolDownDur -= Duration(minutes: 1);
+       print(coolDownDur.inSeconds);
+      if(coolDownDur.inSeconds == 0){
+        coolDownTimer.cancel();
+        setCountdown();
+      }
+    });
   }
 
   void resetCountdownStateOnClick(){
@@ -59,6 +74,7 @@ class _TimeScreenState extends State<TimeScreen> {
     shadowColor = Colors.green.shade100;
     backgroundColor = Colors.green;
     timer.cancel();
+    coolDownTimer();
   }
 
   Color backgroundColor = Colors.red;
