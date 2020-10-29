@@ -6,8 +6,6 @@ class RegistrationScreen extends StatefulWidget {
 
   static const routeName = '/registration';
 
-
-
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
@@ -43,7 +41,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             onChanged: (String text){ bossTwitterHandle = text;},
           ),
           SizedBox(
-            height: 200,
+            height: 150,
           ),
           Container(
             padding:  EdgeInsets.symmetric(vertical: 12, horizontal: 20),
@@ -65,7 +63,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
           ),
           SizedBox(
-            height: 100,
+            height: 20,
           )
         ],
       ),

@@ -28,17 +28,19 @@ class _TimeScreenState extends State<TimeScreen> {
   bool warningVisibility = false;
   String tweet;
   String bossHandle;
+  String userHandle;
 
   @override
   void initState() {
     super.initState();
     setCountdown();
     bossHandle = this.widget.arguments.bossHandle;
-    tweet = bossHandle + " " + getRandomTweet();
+    userHandle = this.widget.arguments.userHandle;
+    tweet = "From " + userHandle + ", " + bossHandle + " " + getRandomTweet();
   }
 
   void setCountdown(){
-    countDown = Duration(seconds: 10);
+    countDown = Duration(seconds: 40);
       timer = Timer.periodic(Duration(seconds: 1), (timer) {
         if(countDown.inSeconds > 0) {
           countDown -= Duration(seconds: 1);
